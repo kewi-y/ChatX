@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
     User user;
@@ -17,6 +20,7 @@ public class ProfileFragment extends Fragment {
     TextView idView;
     TextView bioView;
     ImageButton profileEditButton;
+    Button exitAccountButton;
     public ProfileFragment(User user) {
         this.user = user;
     }
@@ -34,6 +38,15 @@ public class ProfileFragment extends Fragment {
         idView = view.findViewById(R.id.idView);
         bioView = view.findViewById(R.id.bioView);
         profileEditButton = view.findViewById(R.id.profileEditButton);
+        exitAccountButton = view.findViewById(R.id.buttonExit);
+        exitAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), StartActivity.class);
+                startActivity(intent);
+            }
+        });
         profileEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

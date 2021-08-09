@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="@color/black"
+        android:text="Exit" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="350px"
