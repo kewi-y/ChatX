@@ -96,7 +96,9 @@ public class ImagePickTaskActivity extends AppCompatActivity {
                 stRef.child(id).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(getBaseContext(),"Saved",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(ImagePickTaskActivity.this,SignInTaskActivity.class);
+                        startActivity(intent);
                     }
                 });
             }

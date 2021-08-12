@@ -74,7 +74,9 @@ public class EditActivity extends AppCompatActivity {
         if(!textEditBio.equals("") || !textEditName.equals("")) {
             editRefs.child("name").setValue(textEditName);
             editRefs.child("bio").setValue(textEditBio);
-            Toast.makeText(this,"Saved",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(EditActivity.this,SignInTaskActivity.class);
+            startActivity(intent);
         }
         else {
             Toast.makeText(this,"Fill the fields",Toast.LENGTH_SHORT).show();

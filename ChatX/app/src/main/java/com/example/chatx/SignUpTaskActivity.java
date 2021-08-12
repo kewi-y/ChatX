@@ -47,6 +47,7 @@ public class SignUpTaskActivity extends AppCompatActivity {
                 intent.putExtra("userId",user.getId());
                 intent.putExtra("name",user.getName());
                 intent.putExtra("bio",user.getBio());
+                intent.putExtra("avatarId",user.getAvatarId());
                 startActivity(intent);
             }
         });

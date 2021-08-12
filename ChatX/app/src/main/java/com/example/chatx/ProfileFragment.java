@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(!user.avatarId.equals("")){
+        if(!user.getAvatarId().isEmpty()){
            stRefs.child(user.avatarId).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                @Override
                public void onComplete(@NonNull Task<Uri> task) {
