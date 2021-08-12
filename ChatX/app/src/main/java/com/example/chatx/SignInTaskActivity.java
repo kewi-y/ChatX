@@ -52,7 +52,7 @@ public class SignInTaskActivity extends AppCompatActivity {
                             for(DataSnapshot children : snapshot.getChildren()){
                                 FbUser = task.getResult().getUser();
                                 if(FbUser.getUid().equals(children.child("id").getValue())) {
-                                    user = new User((String) children.child("id").getValue(), (String) children.child("name").getValue(),(String) children.child("bio").getValue());
+                                    user = new User((String) children.child("id").getValue(), (String) children.child("name").getValue(),(String) children.child("bio").getValue(),(String) children.child("avatarId").getValue());
                                 }
                             }
                         }
@@ -72,11 +72,12 @@ public class SignInTaskActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot children : snapshot.getChildren()) {
                         if(FbUser.getUid().equals(children.child("id").getValue())) {
-                            user = new User((String) children.child("id").getValue(), (String) children.child("name").getValue(),(String) children.child("bio").getValue());
+                            user = new User((String) children.child("id").getValue(), (String) children.child("name").getValue(),(String) children.child("bio").getValue(),(String) children.child("avatarId").getValue());
                             Intent intent = new Intent(SignInTaskActivity.this,MainScreenActivity.class);
                             intent.putExtra("userId",user.getId());
                             intent.putExtra("name",user.getName());
                             intent.putExtra("bio",user.getBio());
+                            intent.putExtra("avatarId",user.getAvatarId());
                             startActivity(intent);
                         }
                     }

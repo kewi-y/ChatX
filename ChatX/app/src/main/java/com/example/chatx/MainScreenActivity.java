@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainScreenActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    String userId,name,bio;
+    String userId,name,bio,avatarId;
     User user;
     FragmentManager fg;
     ChatFragment chatFragment;
@@ -29,7 +29,8 @@ public class MainScreenActivity extends AppCompatActivity {
         userId = intent.getStringExtra("userId");
         name = intent.getStringExtra("name");
         bio = intent.getStringExtra("bio");
-        user = new User(userId,name,bio);
+        avatarId = intent.getStringExtra("avatarId");
+        user = new User(userId,name,bio,avatarId);
         chatFragment = new ChatFragment(user);
         profileFragment = new ProfileFragment(user);
         fg = getSupportFragmentManager();

@@ -41,7 +41,7 @@ public class SignUpTaskActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 FbUser = task.getResult().getUser();
                 refs = db.getReference("users");
-                user = new User(FbUser.getUid(),name,"");
+                user = new User(FbUser.getUid(),name,"","");
                 refs.push().setValue(user);
                 Intent intent = new Intent(SignUpTaskActivity.this,MainScreenActivity.class);
                 intent.putExtra("userId",user.getId());

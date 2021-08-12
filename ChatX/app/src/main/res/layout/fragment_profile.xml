@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
+    <ImageButton
+        android:id="@+id/imageAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/avatarView"
+        android:layout_alignRight="@+id/avatarView"
+        android:background="@android:color/transparent"
+        android:src="@drawable/outline_add_a_photo_24" />
+
     <Button
         android:id="@+id/buttonExit"
         android:layout_width="wrap_content"
@@ -15,13 +24,12 @@
         android:textColor="@color/black"
         android:text="Exit" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/avatarView"
         android:layout_width="350px"
         android:layout_height="350px"
         android:layout_above="@+id/nameView"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/outline_account_circle_24"/>
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/nameView"
@@ -36,14 +44,14 @@
         android:id="@+id/idView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
-        android:text="ID: " />
+        android:text="ID: "
+        android:textSize="10dp" />
 
     <ImageButton
         android:id="@+id/profileEditButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
+        android:layout_below="@+id/avatarView"
         android:layout_toEndOf="@+id/nameView"
         android:layout_marginLeft="30dp"
         android:background="@android:color/transparent"
@@ -69,10 +77,10 @@
             android:id="@+id/bioView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="3dp"
             android:text="Person bio"
             android:textColor="@color/black"
-            android:layout_gravity="center"
             android:textSize="15dp" />
     </LinearLayout>
 
