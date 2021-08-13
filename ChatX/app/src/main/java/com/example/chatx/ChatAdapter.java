@@ -18,11 +18,13 @@ import java.util.Arrays;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder> {
     private ArrayList<Message> messages;
-    public ChatAdapter(ArrayList<Message> messages){
-        this.messages = messages;
+    interface ClickCallback{
+        public void onClickMessageItem(Message message);
     }
-    public void addMessage(Message message){
-        messages.add(message);
+    ClickCallback clickCallback;
+    public ChatAdapter(ArrayList<Message> messages, ClickCallback clickCallback){
+        this.clickCallback = clickCallback;
+        this.messages = messages;
     }
     @NonNull
     @Override
@@ -34,10 +36,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ChatAdapter.ChatHolder holder, int position) {
-        String message,author;
-        message = messages.get(position).getContent();
-        author = messages.get(position).getUser_nickname();
-        holder.setData(message,author);
+        String messageString,authorString;
+        messageString = messages.get(position).getContent();
+        authorString = messages.get(position).getUser_nickname();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Message message = new Message(messages.get(position).getContent(),messages.get(position).getUser_nickname(),messages.get(position).getUser_id(),messages.get(position).getMessage_id());
+                clickCallback.onClickMessageItem(message);
+            }
+        });
+        holder.setData(messageString,authorString);
     }
 
     @Override

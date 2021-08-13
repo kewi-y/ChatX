@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileChekActivity">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/avatarChekView"
+        android:layout_width="350px"
+        android:layout_height="350px"
+        android:layout_above="@+id/nameChekView"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/nameChekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:text="Person Name" />
+
+    <TextView
+        android:id="@+id/idChekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: "
+        android:textSize="10dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameChekView"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textBioChekView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="BIO : "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/bioChekView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:text="Person bio"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+    </LinearLayout>
+</RelativeLayout>

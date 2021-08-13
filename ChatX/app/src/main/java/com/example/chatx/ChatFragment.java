@@ -1,6 +1,7 @@
 package com.example.chatx;
 
 import android.app.SyncNotedAppOp;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment  {
     FirebaseDatabase db;
     DatabaseReference refs;
     RecyclerView chatView;
@@ -34,6 +35,7 @@ public class ChatFragment extends Fragment {
     AsyncListenMessages asyncListenMessages;
     User user;
     EditText editMessage;
+    ChatAdapter.ClickCallback clickCallback;
     public ChatFragment(User user) {
         db = FirebaseDatabase.getInstance();
         this.user = user;
@@ -57,9 +59,17 @@ public class ChatFragment extends Fragment {
             public void onClick(View v) {
                 String message;
                 message = editMessage.getText().toString();
-                refs.push().setValue(new Message(message,user.getName(),null));
+                refs.push().setValue(new Message(message, user.getName(), user.getId(), null));
             }
         });
+        clickCallback = new ChatAdapter.ClickCallback() {
+            @Override
+            public void onClickMessageItem(Message message) {
+                Intent intent = new Intent(getContext(),ProfileChekActivity.class);
+                intent.putExtra("userId",user.getId());
+                startActivity(intent);
+            }
+        };
         return view;
     }
 
@@ -69,6 +79,8 @@ public class ChatFragment extends Fragment {
         asyncListenMessages = new AsyncListenMessages();
         asyncListenMessages.execute();
     }
+
+
     class AsyncListenMessages extends AsyncTask<Void,Void,Void>{
 
         @Override
@@ -80,10 +92,10 @@ public class ChatFragment extends Fragment {
                     Message message;
                     messages.clear();
                     for(DataSnapshot children : snapshot.getChildren()){
-                        message = new Message((String) children.child("content").getValue(),(String) children.child("user_nickname").getValue(),(String) children.child("message_id").getValue());
+                        message = new Message((String) children.child("content").getValue(),(String) children.child("user_nickname").getValue(),(String) children.child("user_id").getValue(),(String) children.child("message_id").getValue());
                         messages.add(message);
                     }
-                    chatAdapter = new ChatAdapter(messages);
+                    chatAdapter = new ChatAdapter(messages,clickCallback);
                     chatView.setAdapter(chatAdapter);
                     chatView.smoothScrollToPosition(messages.size() - 1);
                 }
