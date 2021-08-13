@@ -66,7 +66,7 @@ public class ChatFragment extends Fragment  {
             @Override
             public void onClickMessageItem(Message message) {
                 Intent intent = new Intent(getContext(),ProfileChekActivity.class);
-                intent.putExtra("userId",user.getId());
+                intent.putExtra("userId",message.getUser_id());
                 startActivity(intent);
             }
         };
